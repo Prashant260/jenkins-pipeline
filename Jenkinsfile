@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/Prashant260/jenkins-pipeline.git',branch: 'main'
+                git 'https://github.com/Prashant260/jenkins-pipeline.git', branch: 'main'
             }
         }
 
