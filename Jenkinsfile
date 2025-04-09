@@ -1,16 +1,10 @@
 pipeline {
     agent any
-     docker {
-            image 'node:18' 
-        }
-    }
-
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub') // Jenkins credentials ID
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_NAME = 'prashant260/nodejs_jenkins'
     }
-    
 
     stages {
         stage('Clone Repo') {
@@ -21,19 +15,31 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                dir('app'){
-                sh 'npm install'
+                script {
+                    docker.image('node:18').inside {
+                        dir('app') {
+                            sh 'npm install'
+                        }
+                    }
+                }
             }
         }
-    }
+
         stage('Run Tests') {
             steps {
-                sh 'npm test || echo "No tests found, skipping."'
+                script {
+                    docker.image('node:18').inside {
+                        dir('app') {
+                            sh 'npm test || echo "No tests found, skipping."'
+                        }
+                    }
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
+                // Docker CLI runs on host, not inside the node:18 image
                 sh 'docker build -t $IMAGE_NAME:latest .'
             }
         }
@@ -54,5 +60,6 @@ pipeline {
     post {
         always {
             sh 'docker logout'
-}
+        }
+    }
 }
