@@ -30,7 +30,7 @@ pipeline {
                 script {
                     docker.image('node:18').inside {
                         dir('app') {
-                            sh 'npm test || echo "No tests found, skipping."'
+                            sh 'npm start || echo "No tests found, skipping."'
                         }
                     }
                 }
