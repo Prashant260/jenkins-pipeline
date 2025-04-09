@@ -1,10 +1,16 @@
 pipeline {
     agent any
+     docker {
+            image 'node:18' 
+        }
+    }
+
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub') // Jenkins credentials ID
         IMAGE_NAME = 'prashant260/nodejs_jenkins'
     }
+    
 
     stages {
         stage('Clone Repo') {
