@@ -15,10 +15,11 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
+                dir('app'){
                 sh 'npm install'
             }
         }
-
+    }
         stage('Run Tests') {
             steps {
                 sh 'npm test || echo "No tests found, skipping."'
