@@ -3,13 +3,14 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub') // Jenkins credentials ID
-        IMAGE_NAME = 'yourdockerhubusername/your-repo-name' // e.g. prashant001/nodejs-app
+        IMAGE_NAME = 'prashant260/nodejs_jenkins' 
     }
 
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/Prashant260/jenkins-pipeline/app.git' 
+                git 'https://github.com/Prashant260/jenkins-pipeline.git'
+' 
             }
         }
 
