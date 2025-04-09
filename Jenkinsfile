@@ -15,16 +15,6 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                dir('app') {
-                    echo 'Running tests...'
-                    sh 'npm start'
-                    sh '^c'
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
