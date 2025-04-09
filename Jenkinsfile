@@ -5,14 +5,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_NAME = 'prashant260/nodejs_jenkins'
     }
-
-    stages {
-        stage('Clone Repo') {
-            steps {
-                git url: 'https://github.com/Prashant260/jenkins-pipeline.git', branch: 'main'
-            }
-        }
-
+    
         stage('Install Dependencies') {
             steps {
                 script {
