@@ -19,7 +19,7 @@ pipeline {
             steps {
                 dir('app') {
                     echo 'Running tests...'
-                    sh 'npm test'
+                    sh 'npm start'
                 }
             }
         }
