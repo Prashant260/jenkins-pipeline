@@ -20,6 +20,7 @@ pipeline {
                 dir('app') {
                     echo 'Running tests...'
                     sh 'npm start'
+                    sh '^c'
                 }
             }
         }
