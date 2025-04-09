@@ -3,13 +3,13 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub') // Jenkins credentials ID
-        IMAGE_NAME = 'prashant260/nodejs_jenkins' 
+        IMAGE_NAME = 'prashant260/nodejs_jenkins'
     }
 
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/Prashant260/jenkins-pipeline.git',branch: 'main' 
+                git 'https://github.com/Prashant260/jenkins-pipeline.git',branch: 'main'
             }
         }
 
@@ -47,7 +47,6 @@ pipeline {
     post {
         always {
             sh 'docker logout'
-        }
-    }
 }
-
+}
+}
